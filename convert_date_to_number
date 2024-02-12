@@ -1,0 +1,6 @@
+let
+  Source = NLG_Table,
+  dateColumns = Table.SelectRows(Table.Schema(Source), each [Kind]="date")[Name],
+  Custom = Table.TransformColumnTypes(Source, List.Transform(dateColumns , each {_, Int64.Type }))
+in
+  Custom
